@@ -1,2 +1,11 @@
 # LJ_particle_dynamics
-Lennard-Jones particle dynamics (for practice of molecular dynamics)
+Lennard-Jones particle dynamics (for the practice of molecular dynamics)
+
+### Requirements
+- numpy
+- matplotlib
+
+### how to use
+```
+python lj_particle_dynsym.py
+```
