@@ -10,3 +10,6 @@ Lennard-Jones particle dynamics (for the practice of molecular dynamics)
 ```
 python lj_particle_dynsym.py
 ```
+
+## TODO
+- Fix total energy not conserved
