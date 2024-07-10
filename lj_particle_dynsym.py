@@ -5,7 +5,7 @@ import datetime
 import copy
 
 class LJParticleDynamics2D:
-    def __init__(self, particle_num=40, temperature=0.01, box_size_x=50, box_size_y=50, time_step=0.001):
+    def __init__(self, particle_num=20, temperature=0.01, box_size_x=40, box_size_y=40, time_step=0.001):
         self.particle_num = particle_num
         self.rand_num = 0.1
         self.temperature = temperature
@@ -93,7 +93,7 @@ class LJParticleDynamics2D:
 
     
     def init_sigma(self):
-        self.sigma = np.ones((self.particle_num)) * self.rand_num
+        self.sigma = np.ones((self.particle_num)) * self.rand_num * 2.0
         return
     
     def init_epsilon(self):
@@ -111,7 +111,7 @@ class LJParticleDynamics2D:
         return
     
     def init_momenta(self):
-        self.momenta =  np.ones((self.particle_num, 2)) * 0.01
+        self.momenta =  np.ones((self.particle_num, 2)) * 0.1
         self.prev_momenta = self.momenta 
         return
     
@@ -140,7 +140,7 @@ class LJParticleDynamics2D:
         
         for i in range(steps):
             
-
+            self.momenta += self.time_step * (self.LJ_force + self.prev_LJ_force) / 2.0
             
             tmp_delta_positions = np.zeros((self.particle_num, 2))
             for j in range(self.particle_num):
@@ -156,7 +156,7 @@ class LJParticleDynamics2D:
             self.calc_temperature()
             self.calc_total_energy()
             
-            self.momenta += self.time_step * (self.LJ_force + self.prev_LJ_force) / 2.0
+            
             
             if i % 50 == 0:
                 print("# STEP "+str(i))
@@ -262,4 +262,4 @@ class Visualization:
             
 if __name__ == "__main__":
     LJ = LJParticleDynamics2D()
-    LJ.main_loop(30000)
+    LJ.main_loop(3000)
